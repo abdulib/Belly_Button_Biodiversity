@@ -13,40 +13,89 @@ function buildMetadata(sample) {
 
       metadatapanel.html("")
 
-    // Use `Object.entries` to add each key and value pair to the panel
-    // Hint: Inside the loop, you will need to use d3 to append new
-    // tags for each key-value in the metadata.
+      // Use `Object.entries` to add each key and value pair to the panel
+      // Hint: Inside the loop, you will need to use d3 to append new
+      // tags for each key-value in the metadata.
 
-    Object.Entries(data).forEach(([key, value]) =>{
-      metadatapanel.append("p")
-      .text(`${key}:${value}`)
+      Object.entries(data).forEach(([key, value]) =>{
+        metadatapanel.append("p")
+        .text(`${key}:${value}`)
 
-    });
+      });
 
     });
 
 
 
     // BONUS: Build the Gauge Chart
-    buildGauge(data.WFREQ);
+    // buildGauge(data.WFREQ);
 }
 
 function buildCharts(sample) {
 
   // @TODO: Use `d3.json` to fetch the sample data for the plots
-  d3.json(/samples/`${sample}`).then(function(data){
+  d3.json(`/samples/${sample}`).then(function(data){
+    console.log(data)
+    var sample_values = data.sample_values.slice(0, 11)
+    console.log(sample_values)
+    
+    var otu_ids = data.otu_ids.slice(0, 11)
+    console.log(otu_ids)
+
+    var otu_labels = data.otu_labels.slice(0, 11)
+    console.log(otu_ids)
 
     // @TODO: Build a Bubble Chart using the sample data
 
+    var trace1 = {
+      x: otu_ids,
+      y: sample_values,
+      mode: 'markers',
+      marker: {
+        size: sample_values,
+        color: otu_ids,
+      }
+    };
+    
+    var data = [trace1];
+    
+    var layout = {
+      title: `${sample}`,
+      showlegend: false,
+
+    };
+    
+    Plotly.newPlot('bubble', data, layout);
+
+
+
+
+
+
     // @TODO: Build a Pie Chart
+
+    var data = [{
+      values: sample_values,
+      labels: otu_labels,
+      type: 'pie'
+    }];
+    
+
+    var layout = {
+      title: `${sample}`,
+      showlegend: false,
+    };
+    
+    Plotly.newPlot('pie', data, layout);
+
+
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
+
+    
   })
 
-
-
-
-  })
+}
 
 
 
