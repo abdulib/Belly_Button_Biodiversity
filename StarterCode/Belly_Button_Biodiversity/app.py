@@ -16,6 +16,13 @@ import os
 
 print(os.environ)
 
+if os.environ["JAWSDB_URL"]:
+    dburl = os.environ["JAWSDB_URL"]
+
+else:
+
+    dburl = "sqlite:///db/bellybutton.sqlite"
+
 
 if os.environ[]
     import config
