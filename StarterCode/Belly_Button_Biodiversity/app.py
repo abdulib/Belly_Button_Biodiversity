@@ -12,9 +12,15 @@ from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 
-import config
-
 import os
+
+print(os.environ)
+
+
+if os.environ[]
+    import config
+
+
 
 
 
