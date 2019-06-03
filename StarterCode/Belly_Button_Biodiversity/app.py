@@ -12,20 +12,23 @@ from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 
-import os
+# import os
 
-print(os.environ)
+# print(os.environ)
 
-if os.environ["JAWSDB_URL"]:
-    dburl = os.environ["JAWSDB_URL"]
+# if not os.environ.get('DYNO')
+#     import config
 
-else:
+# if os.environ.get("JAWSDB_URL"):
+#     dburl = os.environ["JAWSDB_URL"]
 
-    dburl = "sqlite:///db/bellybutton.sqlite"
+# else:
+
+#     dburl = config.dburl
 
 
-if os.environ[]
-    import config
+# if os.environ[]
+#     import config
 
 
 
